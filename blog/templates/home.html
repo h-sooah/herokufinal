@@ -1,22 +1,52 @@
+
+<head>
+    <link rel="stylesheet" href="../static/css/home.css"/>
+    <style>
+        @font-face { font-family: 'BBTreeGB'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGB.woff') format('woff'); font-weight: normal; font-style: normal; }
+        .one {
+            margin-left: 38%;
+        }   
+        .page {
+            margin-left: 48%;
+        }
+        .two {
+            background-color: blueviolet;
+        }
+
+        .card-header {
+            background-color: #FAED7D
+        }
+</style>
+</head>
+<body>
 {%extends 'base.html'%}
 <!--base.html을 쓸거에요!라고 선언해주기 navbar 불러옴.-->
 
+<div class="body">
 {%block contents%}
 <!--이 부분이 content에요! 라고 알리기-->
-<h1>HOME PAGE</h1>
 
+<br>
+<br>
 {% for blog in posts %}
-    <div class="container">
-        <h2>{{blog.id}}번째 글 - {{ blog.title }}({{ blog.comments.count }})</h2>
-        <p>{{ blog.pub_date }}</p>
-        <p>{{ blog.summary }}<a href="{% url 'detail' blog.id %}">....더보기</a></p>
-        <p><a href="{% url 'delete' blog.id %}">삭제</a></p>
+<div class=one>
+<div class="card border-dark mb-3" style="width: 25rem;">
+    <div class="card-header" style="background-color: #FFFFD2;">
+        <h2 style="font-family: 'BBTreeGB'; text-decoration: underline;"><a href="{% url 'detail' blog.id %}" style="color: grey;">{{ blog.title }}</a></h2>
     </div>
-{% endfor %}
+    <div class="card-body text-dark">
+      <p class="card-title" style="font-family: 'BBTreeGB';">{{ blog.pub_date }}</p>
+      <h5 class="card-text" style="font-family: 'BBTreeGB';">{{ blog.summary }}</h5>
+    </div>
+  </div>
+</div>
+<br>
+  {% endfor %}
 
+<div class=page>
 {% if posts.has_previous %}
-    <a href="?page=1">First</a>
-    <a href="?page={{posts.previous_page_number}}">Previous</a>
+    <a href="?page=1" style="color: #C4B73B">First</a>
+    <a href="?page={{posts.previous_page_number}}" style="color: #C4B73B">Previous</a>
 {% endif %}
 
 <span>{{ posts.number }}</span>
@@ -24,8 +54,12 @@
 <span>{{ posts.paginator.num_pages}}</span>
 
 {% if posts.has_next %}
-    <a href="?page={{posts.next_page_number}}">Next</a>
-    <a href="?page={{posts.paginator.num_pages}}">Last</a>
+    <a href="?page={{posts.next_page_number}}" style="color: #C4B73B">Next</a>
+    <a href="?page={{posts.paginator.num_pages}}" style="color: #C4B73B">Last</a>
 {% endif %}
+</div>
 
 {%endblock%}
+</div>
+
+</body>

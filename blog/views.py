@@ -9,7 +9,7 @@ from django.core.paginator import Paginator
 def home(request):
     blogs = Blog.objects
     blog_list = Blog.objects.all()
-    paginator = Paginator(blog_list, 5)
+    paginator = Paginator(blog_list, 3)
     page = request.GET.get('page')
     posts = paginator.get_page(page)
     return render(request, 'home.html', {'blogs': blogs, 'posts':posts})
@@ -51,4 +51,4 @@ def comment_new(request, blog_id):
             return redirect('detail', blog_id)
     else:
         form = CommentForm()
-    return render(request, 'blog_form.html', {'form':form,})
+    return render(request, 'blog_form.html', {'form':form})

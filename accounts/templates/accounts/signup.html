@@ -1,3 +1,24 @@
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <style>
+
+            h1 {
+                font-family: 'Roboto', sans-serif;
+                text-align: center;
+            }
+            form {
+                font-family: 'Roboto', sans-serif;
+                text-align: center;
+                margin-top: 3%;
+                
+            }
+            input {
+                border-radius: 40px;
+                border-color: grey;
+            }
+        </style>
+</head>
+<body>
 {% extends 'base.html' %}
 {% block contents %}
 
@@ -6,25 +27,31 @@
 <br>
 <br>
 {% endif %}
-
-<h1>회원가입 페이지 입니다.</h1>
+<br>
 
 <form method="POST" action="{% url 'signup'%}">
     {% csrf_token %}
+    <h1>Signup Page</h1>
+    <br>
     Username:
     <br>
-    <input name="username" type="text" value="">
+    <input name="username" type="text">
+    <br>
     <br>
     Password:
     <br>
-    <input name="password1" type="password" value="">
+    <input name="password1" type="password">
+    <br>
     <br>
     Confirm Password:
     <br>
-    <input name="password2" type="password" value="">
+    <input name="password2" type="password">
     <br>
     <br>
-    <input class="btn btn-primary" type="submit" value="Sign Up!">
+    <br>
+    <input class="btn btn-warning" type="submit" value="Sign Up!">
 </form>
 
 {% endblock %}
+
+</body>

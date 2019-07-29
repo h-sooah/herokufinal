@@ -1,13 +1,37 @@
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <style>
+            @font-face { font-family: 'BBTreeGB'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGB.woff') format('woff'); font-weight: normal; font-style: normal; }
 
-<h1>DETAIL PAGE - {{blog.id}}번째 글</h1>
+            h1, p, a {
+                font-family: 'BBTreeGB';
+                text-align: center;
+            }
+            form {
+                font-family: 'Roboto', sans-serif;
+                text-align: center;
+                margin-top: 3%;
+                
+            }
+            input {
+                border-radius: 40px;
+                border-color: grey;
+            }
+        </style>
+</head>
+<body>
+{% extends 'base.html' %}
+{% block contents %}
 
+<br>
+<br>
 <div class="container">
     <h1>{{ blog.title }}</h1>
     <p>{{ blog.pub_date }}</p>
-    <p>{{ blog.body }}</p>
+    <p style="border-style: solid; border-color: rgb(209, 171, 47);">{{ blog.body }}</p>
 
     <hr>
-    <a href="{% url 'comment_new' blog.pk %}">댓글 추가하기</a>
+    <button type="button" class="btn btn-warning" style="float: right;"><a href="{% url 'comment_new' blog.pk %}" style="color: black;">댓글 추가하기</a></button>
 
     {% for comment in blog.comments.all %}
       <div class="comment">
@@ -21,5 +45,10 @@
     {% endfor %}
 
     <hr>
-    <a href="{% url 'home' %}">돌아가기</a>
-</div>
+    <button type="button" class="btn btn-warning" style="float: right;"><a href="{% url 'delete' blog.id %}" style="color: black;">삭제</a></button>
+    <button type="button" class="btn btn-warning" ><a href="{% url 'home' %}" style="color: black;">돌아가기</a></button>
+
+  </div>
+{% endblock %}
+
+</body>

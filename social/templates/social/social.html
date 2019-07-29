@@ -1,17 +1,53 @@
+{%extends 'base.html'%}
+<!--base.html을 쓸거에요!라고 선언해주기 navbar 불러옴.-->
 
+{%block contents%}
+<!--이 부분이 content에요! 라고 알리기-->
+
+
+<head>
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+        <style>
+                @font-face { font-family: 'BBTreeGB'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGB.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+                h1 {
+                    font-family: 'Roboto', sans-serif;
+                    text-align: center;
+                    margin-top: 3%;
+                }
+                a {
+                    font-family: 'BBTreeGB';
+                    text-decoration: underline;
+                    color:  rgb(235, 190, 66)
+                }
+                p {
+                    text-align: center;
+                    font-size: 30px;
+                }
+            </style>
+    </head>
+<body>
 {% load socialaccount %}
 {% providers_media_js %}
 
-<h1>hello world!</h1>
+<h1>Social Login Page</h1>
+<br>
+<br>
 
-<a href="/accounts/signup">회원가입</a><br>
+<p><a href="/accounts/signup">회원가입</a></p>
 
 {% if user.is_authenticated %}
-<a href = "/accounts/logout">로그아웃</a><br>
+<p><a href = "/accounts/logout">로그아웃</a></p><br>
 {{ user.username }} 님이 로그인 중
 
+
 {% else %}
-<a href="{% provider_login_url 'google' %}">구글 로그인</a><br>
-로그인 해주세요
+<br>
+<br>
+<p><a href="{% provider_login_url 'google' %}">구글 로그인</a></p><br>
 
 {% endif %}
+
+
+{%endblock%}
+</body>
